@@ -5,6 +5,16 @@ module.exports = async function (context, req) {
     const emailClient = new EmailClient(process.env["ACS_CONNECTION_STRING"]);
     const toAddress = req.body.email;
 
+    context.log("ACS_CONNECTION_STRING:", connectionString);
+    
+    if (!connectionString) {
+        context.res = {
+            status: 500,
+            body: "Connection string is not set."
+        };
+        return;
+    }
+
     const emailContent = {
         subject: "Your Subject",
         plainText: "Hello, this is your message content.",
