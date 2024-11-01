@@ -10,7 +10,7 @@ module.exports = async function (context, req) {
     if (!connectionString) {
         context.res = {
             status: 500,
-            body: "Connection string is not set."
+            body: "接続文字列が見つかりません。Azure Communication Services への接続文字列を設定してください。",
         };
         return;
     }
